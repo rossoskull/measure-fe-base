@@ -53,10 +53,25 @@ const Editor = () => {
     }
   }
 
+  const removeFromList = (idx: number) => {
+    const list = dataList.slice()
+
+    list.splice(idx, 1)
+
+    list.forEach((item, index) => {
+      item.setSr(index + 1)
+    })
+
+    setDataList(list)
+  }
+
   return (
     <div className="editor">
       <p className="editor__header">Measure</p>
-      <DisplayList list={dataList} />
+      <DisplayList
+        list={dataList}
+        removeFromList={removeFromList}
+      />
       <Input
         sr={dataList.length + 1}
         fieldValues={currentInput}

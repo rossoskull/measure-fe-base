@@ -9,9 +9,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 interface DisplayListProps {
   list: Array<DataEntry>
+  removeFromList: Function
 }
 
-const DisplayList = ({ list }: DisplayListProps) => {
+const DisplayList = ({ list, removeFromList }: DisplayListProps) => {
   /** State */
   const [totalVolume, setTotalVolume] = useState('')
 
@@ -52,7 +53,7 @@ const DisplayList = ({ list }: DisplayListProps) => {
                 <td>{l.length}</td>
                 <td>{l.getVolume()}</td>
                 <td className="action-td">
-                  <FontAwesomeIcon icon={faTrash} />
+                  <FontAwesomeIcon onClick={() => removeFromList(lIdx)} icon={faTrash} />
                 </td>
               </tr>
             )

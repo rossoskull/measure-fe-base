@@ -19,4 +19,9 @@ export class DataEntry {
   getCSV = () => {
     return `${this.sr},${this.height},${this.width},${this.length}`
   }
+
+  setSr = (sr: number) => {
+    this.sr = sr
+    return this.sr
+  }
 }
