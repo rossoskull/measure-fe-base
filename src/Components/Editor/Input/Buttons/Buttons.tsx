@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackspace, faCaretLeft, faCaretRight, faEraser } from '@fortawesome/free-solid-svg-icons'
+
 import './Button.scss'
 
 interface ButtonsInterface {
@@ -17,11 +20,11 @@ const Buttons = (props: ButtonsInterface) => {
       <Button label="4" onClick={() => props.handleInputClick('4')} />
       <Button label="5" onClick={() => props.handleInputClick('5')} />
       <Button label="6" onClick={() => props.handleInputClick('6')} />
-      <Button label="<" onClick={props.previousField} />
+      <Button label="DEL" onClick={() => props.handleInputClick('DEL')} />
       <Button label="1" onClick={() => props.handleInputClick('1')} />
       <Button label="2" onClick={() => props.handleInputClick('2')} />
       <Button label="3" onClick={() => props.handleInputClick('3')} />
-      <Button label="NL" onClick={() => props.handleInputClick('NL')} />
+      <Button label="<" onClick={props.previousField} />
       <Button label="." onClick={() => props.handleInputClick('.')} />
       <Button label="0" onClick={() => props.handleInputClick('0')} />
       <Button label="1.5" onClick={() => props.handleInputClick('1.5')} />
@@ -37,9 +40,22 @@ interface ButtonInterface {
 }
 
 const Button = ({ label, onClick }: ButtonInterface) => {
+  var content: any 
+  if (label === 'CLS') {
+    content = <FontAwesomeIcon icon={faEraser} />
+  } else if (label === 'DEL') {
+    content = <FontAwesomeIcon icon={faBackspace} />
+  } else if (label === '<') {
+    content = <FontAwesomeIcon icon={faCaretLeft} />
+  } else if (label === '>') {
+    content = <FontAwesomeIcon icon={faCaretRight} />
+  } else {
+    content = label
+  }
+
   return (
     <div className="buttons__button" onClick={() => onClick ? onClick() : null}>
-      {label}
+      {content}
     </div>
   )
 }

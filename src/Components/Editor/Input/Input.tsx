@@ -99,6 +99,9 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
     } else if (value === 'CLS') {
       resetInputs()
       console.log(fieldValues)
+    } else if (value === 'DEL' && currentFieldValue.length > 0) {
+      currentFieldValue = currentFieldValue.slice(0, -1)
+      updateCurrentInput(currentFieldValue, currentField)
     }
     
   }

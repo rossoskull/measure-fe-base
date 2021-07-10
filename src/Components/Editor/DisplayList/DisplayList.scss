@@ -1,0 +1,79 @@
+@import "../../../Sass/imports";
+
+.display-list {
+  height: calc(100vh - 37rem - 6rem);
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  .table-container {
+    font-size: 1.4rem;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: column-reverse;
+
+    .table-header {
+      position: sticky;
+      top: 0;
+      background-color: $ocean;
+      color: $white;
+      z-index: 1;
+    }
+
+    table {
+      border: none;
+      gap: none;
+      border-spacing: 0;
+
+      td, th {
+        margin: none;
+        border: none;
+        padding: .8rem .8rem;
+        text-align: center;
+      }
+
+      .action-td {
+        color: rgb(167, 17, 17);
+      }
+    }
+
+    .table-data-row{
+      animation: fade-in .8s ease-out 0s forwards;
+      overflow: hidden;
+      
+      &:nth-of-type(even) {
+        background-color: $seafoam-opacity-50;
+      }
+    }
+
+    .empty-table {
+      flex-grow: 1;
+      text-align: center;
+      color: $ocean;
+      padding-top: 2rem;
+      font-size: 1.8rem;
+    }
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    height: 3rem;
+    align-items: center;
+
+    p > span {
+      font-weight: bold;
+      color: $ocean
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

@@ -55,7 +55,7 @@ const Editor = () => {
 
   return (
     <div className="editor">
-      {currentInput.height} {currentInput.width} {currentInput.length}
+      <p className="editor__header">Measure</p>
       <DisplayList list={dataList} />
       <Input
         sr={dataList.length + 1}
