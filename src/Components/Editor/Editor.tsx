@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import DisplayList from './DisplayList/DisplayList'
 import Input from './Input/Input'
-import { DataEntry } from '../../Utils/utils'
+import { addListToLocalStorage, DataEntry } from '../../Utils/utils'
 
 import './Editor.scss'
 
@@ -50,6 +50,7 @@ const Editor = () => {
       const newList = dataList.slice()
       newList.push(new DataEntry(sr, parseFloat(height), parseFloat(width), parseFloat(length)))
       setDataList(newList)
+      updateDataInStorage()
     }
   }
 
@@ -63,6 +64,11 @@ const Editor = () => {
     })
 
     setDataList(list)
+    updateDataInStorage()
+  }
+
+  const updateDataInStorage = () => {
+    addListToLocalStorage(dataList)
   }
 
   return (
