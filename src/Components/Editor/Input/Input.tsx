@@ -29,7 +29,21 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
   /** Access fields */
   const refArray = [heightRef, widthRef, lengthRef]
 
+  const validateCurrentField = () => {
+    const { height, width, length } = fieldValues
+    if (currentField === 0 && height.length === 0) {
+      return false
+    } else if (currentField === 1 && width.length === 0) {
+      return false
+    } else if (currentField === 2 && length.length === 0) {
+      return false
+    }
+
+    return true
+  }
+
   const nextField = () => {
+    if (!validateCurrentField()) return
     let newField = 0
     let prevField = 2
     if (currentField < 2) {
@@ -98,12 +112,10 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
       updateCurrentInput(currentFieldValue, currentField)
     } else if (value === 'CLS') {
       resetInputs()
-      console.log(fieldValues)
     } else if (value === 'DEL' && currentFieldValue.length > 0) {
       currentFieldValue = currentFieldValue.slice(0, -1)
       updateCurrentInput(currentFieldValue, currentField)
     }
-    
   }
 
   return (

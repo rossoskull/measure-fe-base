@@ -13,16 +13,16 @@ const Editor = ({ isNew }: EditorProps) => {
   /** State */
   const [dataList, setDataList] = useState<DataEntry[]>([])
   const [currentInput, setCurrentInput] = useState({
-    length: '0',
-    height: '0',
-    width: '0'
+    length: '',
+    height: '',
+    width: ''
   })
 
   const resetCurrentInput = () => {
     setCurrentInput({
-      length: '0',
-      height: '0',
-      width: '0'
+      length: '',
+      height: '',
+      width: ''
     })
   }
 

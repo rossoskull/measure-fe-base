@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileSignature, faFileMedical } from '@fortawesome/free-solid-svg-icons'
-import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { isListInStorage } from '../../Utils/utils'
 
@@ -11,7 +11,6 @@ import './Dashboard.scss'
 const Dashboard = () => {
   /** State */
   const [ isPrevious, setIsPrevious ] = useState(false)
-  const [ redirect, setRedirect ] = useState('')
 
   /** component did mount */
   useEffect(() => {
@@ -19,46 +18,40 @@ const Dashboard = () => {
     setIsPrevious(doesListExist)
   }, [])
 
-  /** Handle edit old file */
-  const editOldFile = () => {
-    setRedirect('/editor')
-  }
-
-  /** Handle create new file */
-  const createNewFile = () => {
-    setRedirect('/editor/new')
-  }
-
-  if (redirect) {
-    return <Redirect to={redirect} />
-  }
-
   return (
     <div className="dashboard">
-      <button
-        className="icon-button"
-        disabled={!isPrevious}
-        onClick={editOldFile}
+      <Link
+        to="/editor"
+        className="icon-link"
       >
-        <FontAwesomeIcon
-          icon={faFileSignature}
-          className="icon-button__icon"
-        />
-        <p className="icon-button__text">Edit saved file</p>
-      </button>
+        <button
+          className="icon-button"
+          disabled={!isPrevious}
+        >
+          <FontAwesomeIcon
+            icon={faFileSignature}
+            className="icon-button__icon"
+          />
+          <p className="icon-button__text">Edit saved file</p>
+        </button>
+      </Link>
 
       <p className="separator">Or</p>
 
-      <button
-        className="icon-button"
-        onClick={createNewFile}
+      <Link
+        to="/editor/new"
+        className="icon-link"
       >
-        <FontAwesomeIcon
-          icon={faFileMedical}
-          className="icon-button__icon"
-        />
-        <p className="icon-button__text">Create new file</p>
-      </button>
+        <button
+          className="icon-button"
+        >
+          <FontAwesomeIcon
+            icon={faFileMedical}
+            className="icon-button__icon"
+            />
+          <p className="icon-button__text">Create new file</p>
+        </button>
+      </Link>
     </div>
   )
 }
