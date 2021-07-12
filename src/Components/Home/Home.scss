@@ -1,0 +1,52 @@
+@import "../../Sass/imports";
+
+.home {
+  width: 90vw;
+  max-width: 60rem;
+  margin: 0 auto;
+  color: $ocean;
+  display: flex;
+  height: 100vh;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 3.4rem;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column;
+    gap: 1.4rem;
+    
+    input[type="text"], input[type="password"] {
+      font-size: 1.8rem;
+      padding: .6rem 1rem;
+      border: none;
+      color: $ocean;
+      letter-spacing: .1rem;
+      outline: none;
+      transition: .15s ease-out;
+      border-radius: .3rem;
+
+      &:focus {
+        box-shadow: 0rem 0rem 0rem .2rem $ocean;
+      }
+    }
+
+    input[type="submit"] {
+      background-color: $ocean;
+      color: $white;
+      border: none;
+      padding: .6rem 1rem;
+      font-size: 1.6rem;
+      border-radius: .3rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
