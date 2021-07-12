@@ -1,0 +1,44 @@
+@import "../../Sass/imports";
+
+.dashboard {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  .icon-button {
+    background: none;
+    border: none;
+    color: $ocean;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: .5rem;
+    transition: .15s ease-out;
+    
+    &__icon {
+      font-size: 5.6rem;
+      margin-bottom: 1.4rem;
+    }
+    
+    &__text {
+      font-size: 1.8rem;
+    }
+
+    &:active {
+      background-color: $seafoam-opacity-30;
+    }
+
+    &:disabled {
+      color: $black-opacity-30;
+    }
+  }
+
+  .separator {
+    font-size: 1.6rem;
+    color: $ocean;
+  }
+}

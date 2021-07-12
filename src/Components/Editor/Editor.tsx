@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import DisplayList from './DisplayList/DisplayList'
 import Input from './Input/Input'
-import { addListToLocalStorage, DataEntry } from '../../Utils/utils'
+import { addListToLocalStorage, DataEntry, getListFromStorage, isListInStorage } from '../../Utils/utils'
 
 import './Editor.scss'
 
-const Editor = () => {
+interface EditorProps {
+  isNew?: Boolean
+}
+const Editor = ({ isNew }: EditorProps) => {
   /** State */
   const [dataList, setDataList] = useState<DataEntry[]>([])
   const [currentInput, setCurrentInput] = useState({
@@ -23,8 +26,16 @@ const Editor = () => {
     })
   }
 
+  /** Component did mount */
+  useEffect(() => {
+    const isPreviousData = isListInStorage()
+    if (isPreviousData && !isNew) {
+      let rawDataList = getListFromStorage()
+      setDataList(rawDataList)
+    }
+  }, [isNew])
+
   const updateCurrentInput = (value: string, field: number) => {
-    console.log(value)
     if (field === 0) {
       setCurrentInput({
         ...currentInput,
@@ -45,12 +56,11 @@ const Editor = () => {
 
   const addDataToList = (sr: number) => {
     const { length, height, width } = currentInput
-    console.log(length, height, width)
     if (length !== '0' && height !== '0' && width !== '0') {
       const newList = dataList.slice()
       newList.push(new DataEntry(sr, parseFloat(height), parseFloat(width), parseFloat(length)))
       setDataList(newList)
-      updateDataInStorage()
+      updateDataInStorage(newList)
     }
   }
 
@@ -64,11 +74,11 @@ const Editor = () => {
     })
 
     setDataList(list)
-    updateDataInStorage()
+    updateDataInStorage(list)
   }
 
-  const updateDataInStorage = () => {
-    addListToLocalStorage(dataList)
+  const updateDataInStorage = (list: Array<DataEntry>) => {
+    addListToLocalStorage(list)
   }
 
   return (

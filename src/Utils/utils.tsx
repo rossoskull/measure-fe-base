@@ -42,6 +42,15 @@ export const addListToLocalStorage = (list: Array<DataEntry>) => {
   localStorage.setItem('previousData', str)
 }
 
+/** Check if list exists in storage */
+export const isListInStorage = () => {
+  const str = localStorage.getItem('previousData') || ''
+  if (str.length > 0) {
+    return true
+  }
+  return false
+}
+
 /** Get data list from localstorage */
 export const getListFromStorage = () => {
   const str = localStorage.getItem('previousData')
