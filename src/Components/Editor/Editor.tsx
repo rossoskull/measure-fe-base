@@ -113,9 +113,10 @@ const Editor = ({ isNew }: EditorProps) => {
   const handlePrint = (e: React.MouseEvent<HTMLParagraphElement>) => {
     const customerName = prompt('Enter customer name')
     const invoiceNum = prompt('Enter invoice number')
+    const productName = prompt('Enter product name')
 
-    if (customerName && invoiceNum) {
-      setCustomerData(customerName, invoiceNum)
+    if (customerName && invoiceNum && productName) {
+      setCustomerData(customerName, invoiceNum, productName)
 
       history.push('/print')
     }

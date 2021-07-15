@@ -11,11 +11,12 @@ import './PrintTable.scss'
 const PrintTable = () => {
   /** State */
   const [dataList, setDataList] = useState<DataEntry[]>([])
-  const [totalVolume, setTotalVolume] = useState(0.0)
+  const [totalVolume, setTotalVolume] = useState('')
   const [docSr, setDocSr] = useState('')
   const [custData, setCustData] = useState({
     customer: '',
-    invoice: ''
+    invoice: '',
+    product: ''
   })
 
   /** Component did mount */
@@ -31,7 +32,6 @@ const PrintTable = () => {
       // Get customer details
       const customerData = getCustomerData()
       if (customerData) {
-        console.log(customerData)
         setCustData(customerData)
       }
     }
@@ -41,7 +41,7 @@ const PrintTable = () => {
   useEffect(() => {
     let volume = 0.0
     dataList.forEach((item) => volume += parseFloat(item.getVolume()))
-    setTotalVolume(volume)
+    setTotalVolume(volume.toFixed(3))
   }, [dataList])
 
   const printWindow = () => {

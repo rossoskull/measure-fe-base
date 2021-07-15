@@ -9,11 +9,12 @@ import './Table.scss'
 
 interface TableInterface {
   list: Array<DataEntry>
-  volume: Number
+  volume: string
   sr: string
   customerData: {
     customer: string
     invoice: string
+    product: string
   }
 }
 const Table = ({ list, volume, sr, customerData }: TableInterface) => {
@@ -22,7 +23,7 @@ const Table = ({ list, volume, sr, customerData }: TableInterface) => {
     return (
       <div className="p-table__trow">
         <div className="p-table__trow__cell w1 cell right">{l.sr}</div>
-        <div className="p-table__trow__cell w2 cell">Wood</div>
+        <div className="p-table__trow__cell w2 cell">{customerData.product}</div>
         <div className="p-table__trow__cell w3 cell right">1</div>
         <div className="p-table__trow__cell w3 cell right">{l.length}</div>
         <div className="p-table__trow__cell w3 cell right">{l.width}</div>

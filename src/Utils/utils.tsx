@@ -96,10 +96,11 @@ export const setNewSrWithValue = (value: string) => {
 }
 
 /** Set customer data */
-export const setCustomerData = (customerName: string, invoiceNo: string) => {
+export const setCustomerData = (customerName: string, invoiceNo: string, productName: string) => {
   const obj = {
     customer: customerName,
-    invoice: invoiceNo
+    invoice: invoiceNo,
+    product: productName
   }
 
   localStorage.setItem('cdata', JSON.stringify(obj))
