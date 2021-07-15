@@ -6,7 +6,6 @@ import { DataEntry } from '../../../Utils/utils'
 
 import './Table.scss'
 
-
 interface TableInterface {
   list: Array<DataEntry>
   volume: string

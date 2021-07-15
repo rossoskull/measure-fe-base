@@ -130,20 +130,23 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
         <div className="ed-input__fields">
           <p className="ed-input__fields__field srno">{sr}</p>
           <input
+            readOnly
             type="text"
             placeholder="height"
             ref={heightRef}
             className="ed-input__fields__field focus"
             value={parseInt(fieldValues.height) === 0 ? '' : fieldValues.height}
-          />
+            />
           <input
+            readOnly
             type="text"
             placeholder="width"
             ref={widthRef}
             className="ed-input__fields__field"
             value={parseInt(fieldValues.width) === 0 ? '' : fieldValues.width}
-          />
+            />
           <input
+            readOnly
             type="text"
             placeholder="length"
             ref={lengthRef}

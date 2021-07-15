@@ -93,7 +93,7 @@ const DisplayList = ({ list, removeFromList, editValues, editIndex }: DisplayLis
           </tr>
           {list.map((l, lIdx) => {
             return (
-              <tr className="table-data-row" key="lIdx">
+              <tr className="table-data-row" key={lIdx}>
                 <td onClick={() => swapItem(lIdx)}>{l.sr}</td>
                 <td onClick={() => editHeight(lIdx, l.height)}>{l.height}</td>
                 <td onClick={() => editWidth(lIdx, l.width)}>{l.width}</td>
