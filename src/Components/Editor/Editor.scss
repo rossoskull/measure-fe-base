@@ -10,11 +10,32 @@
   justify-content: space-between;
 
   &__header {
-    height: 6rem;
-    font-size: 2.8rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    color: $ocean;
-    font-weight: bold;
+
+    &__title {
+      height: 6rem;
+      font-size: 2.8rem;
+      display: flex;
+      align-items: center;
+      color: $ocean;
+      font-weight: bold;
+    }
+
+    &__doc-sr {
+      color: $ocean;
+    }
+
+    &__links {
+      display: flex;
+      gap: 1.5rem;
+
+      &__link {
+        text-decoration: none;
+        color: $ocean;
+        font-size: 1.6rem;
+      }
+    }
   }
 }

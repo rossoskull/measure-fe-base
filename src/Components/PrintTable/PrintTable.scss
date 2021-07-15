@@ -1,0 +1,29 @@
+@import "../../Sass/imports";
+
+.print {
+  &__print-button {
+    position: fixed;
+    background-color: $ocean;
+    color: $white;
+    font-size: 1.6rem;
+    height: 4rem;
+    width: 4rem;
+    border: 0rem;
+    border-radius: 2rem;
+    bottom: 2rem;
+    right: 2rem;
+    box-shadow: 0px 2px 4px 4px rgba( #000, .2);
+  }
+}
+
+@media print {
+  body {
+    background-color: #fff !important;
+    width: 8.27in;
+    height: 11.69in;
+  }
+
+  .no-print {
+    display: none;
+  }
+}

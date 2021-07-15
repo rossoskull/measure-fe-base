@@ -1,0 +1,125 @@
+@import "../../../Sass/imports";
+
+$boxborder: 1px solid black;
+$rowcoltemplate: 1fr 3fr repeat(4, 1fr) 1.5fr;
+$lastrowcoltemp: 4fr 1fr 3fr 1.5fr;
+
+.p-table {
+  border: $boxborder;
+
+  .cell {
+    padding: 2.5px 5px;
+  }
+  
+  &__title-box {
+    border-bottom: $boxborder;
+    padding: 5px 0;
+
+    p {
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 16pt;
+    }
+
+    &__subtitle {
+      font-size: 12pt;
+      font-weight: bold;
+    }
+  }
+
+  &__desc-box {
+    display: flex;
+    border-bottom: $boxborder;
+
+    &__left {
+      flex-grow: 1;
+      border-right: $boxborder;
+
+      &__cell {
+
+        &:not(:last-of-type) {
+          border-bottom: $boxborder;
+        }
+
+        &__label {
+          display: inline-block;
+          width: 120px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &__right {
+      width: 200px;
+
+      &__date, &__calculation-type {
+        padding-left: 5px;
+      }
+      &__date {
+        border-bottom: $boxborder;
+
+        &__label {
+          width: 35px;
+          display: inline-block;
+          font-weight: bold;
+        }
+      }
+
+      &__calculation-type__label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__head {
+    width: 100%;
+    border-top: $boxborder;
+    border-bottom: 2px solid black;
+    display: grid;
+    grid-template-columns: $rowcoltemplate;
+
+    &__cell {
+      font-weight: bold;
+      
+      &:not(:last-of-type) {
+        border-right: $boxborder;
+      }
+    }
+  }
+
+  &__trow {
+    width: 100%;
+    display: grid;
+    grid-template-columns: $rowcoltemplate;
+
+    &:not(:last-of-type) {
+      border-bottom: $boxborder;
+    }
+
+    &__cell {
+      &:not(:last-of-type) {
+        border-right: $boxborder;
+      }
+    }
+  }
+
+  &__footrow {
+    width: 100%;
+    display: grid;
+    grid-template-columns: $lastrowcoltemp;
+
+    &__cell {
+      &:not(:last-of-type) {
+        border-right: $boxborder;
+      }
+    }
+  }
+
+  .right {
+    text-align: right;
+  }
+}

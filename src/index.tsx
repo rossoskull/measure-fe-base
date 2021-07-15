@@ -8,6 +8,7 @@ import Editor from './Components/Editor/Editor'
 import Dashboard from './Components/Dashboard/Dashboard'
 
 import './Sass/_base.scss'
+import PrintTable from './Components/PrintTable/PrintTable'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,6 +35,12 @@ ReactDOM.render(
         exact
         path="/editor/new"
         render={(props) => <Editor {...props} isNew />}
+      />
+
+      <Route
+        exact
+        path="/print"
+        component={PrintTable}
       />
     </BrowserRouter>
   </React.StrictMode>,

@@ -16,7 +16,7 @@ const Home = () => {
 
   /** Component did mount */
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem('auth')
+    const isLoggedIn = localStorage.getItem('auth')
 
     if (isLoggedIn === 'true') {
       setRedirect('/dashboard')
@@ -35,7 +35,7 @@ const Home = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (fieldState.id === authCreds.id && fieldState.password === authCreds.pass) {
-      sessionStorage.setItem('auth', 'true')
+      localStorage.setItem('auth', 'true')
       setRedirect('/dashboard')
     }
   }

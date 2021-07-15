@@ -1,4 +1,4 @@
 export const authCreds = {
-  'id': 'ssm',
+  'id': 'Ssm',
   'pass': '1234'
 }
