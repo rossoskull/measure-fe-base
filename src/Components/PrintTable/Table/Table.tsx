@@ -42,8 +42,8 @@ const Table = ({ list, volume, sr, customerData }: TableInterface) => {
       <div className="p-table__desc-box">
         <div className="p-table__desc-box__left">
           <div className="p-table__desc-box__left__cell cell">
-            <span className="p-table__desc-box__left__cell__label">Sr. No.</span>
-            {sr}
+            <span className="p-table__desc-box__left__cell__label"></span>
+            {/* {sr} */}
           </div>
           <div className="p-table__desc-box__left__cell cell">
             <span className="p-table__desc-box__left__cell__label">Invoice No.</span>

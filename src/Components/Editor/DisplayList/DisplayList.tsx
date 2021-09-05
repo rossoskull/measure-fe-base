@@ -85,9 +85,9 @@ const DisplayList = ({ list, removeFromList, editValues, editIndex }: DisplayLis
         <table id="display-table">
           <tr className="table-header">
             <th>Sr. no.</th>
-            <th>Height</th>
-            <th>Width</th>
             <th>Length</th>
+            <th>Width</th>
+            <th>Thickness</th>
             <th>Volume</th>
             <th></th>
           </tr>
@@ -95,9 +95,9 @@ const DisplayList = ({ list, removeFromList, editValues, editIndex }: DisplayLis
             return (
               <tr className="table-data-row" key={lIdx}>
                 <td className="table-data-row__clickable" onClick={() => swapItem(lIdx)}>{l.sr}</td>
-                <td className="table-data-row__clickable" onClick={() => editHeight(lIdx, l.height)}>{l.height}</td>
-                <td className="table-data-row__clickable" onClick={() => editWidth(lIdx, l.width)}>{l.width}</td>
                 <td className="table-data-row__clickable" onClick={() => editLength(lIdx, l.length)}>{l.length}</td>
+                <td className="table-data-row__clickable" onClick={() => editWidth(lIdx, l.width)}>{l.width}</td>
+                <td className="table-data-row__clickable" onClick={() => editHeight(lIdx, l.height)}>{l.height}</td>
                 <td>{l.getVolume()}</td>
                 <td className="action-td">
                   <FontAwesomeIcon onClick={() => removeFromList(lIdx)} icon={faTrash} />

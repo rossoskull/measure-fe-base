@@ -99,7 +99,7 @@ const Editor = ({ isNew }: EditorProps) => {
     if (field === 0) {
       setCurrentInput({
         ...currentInput,
-        height: value
+        length: value
       })
     } else if (field === 1) {
       setCurrentInput({
@@ -109,7 +109,7 @@ const Editor = ({ isNew }: EditorProps) => {
     } else {
       setCurrentInput({
         ...currentInput,
-        length: value
+        height: value
       })
     }
   }

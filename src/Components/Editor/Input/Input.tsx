@@ -27,15 +27,15 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
   const [currentField, setCurrentField] = useState(0)
 
   /** Access fields */
-  const refArray = [heightRef, widthRef, lengthRef]
+  const refArray = [lengthRef, widthRef, heightRef]
 
   const validateCurrentField = () => {
     const { height, width, length } = fieldValues
-    if (currentField === 0 && height.length === 0) {
+    if (currentField === 0 && length.length === 0) {
       return false
     } else if (currentField === 1 && width.length === 0) {
       return false
-    } else if (currentField === 2 && length.length === 0) {
+    } else if (currentField === 2 && height.length === 0) {
       return false
     }
 
@@ -93,13 +93,13 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
   const handleInputClick = (value: string) => {
     let currentFieldValue = ''
     if (currentField === 0) {
-      const stringValue = fieldValues.height.toString()
+      const stringValue = fieldValues.length.toString()
       currentFieldValue = stringValue === '0' ? '' : stringValue
     } else if (currentField === 1) {
       const stringValue = fieldValues.width.toString()
       currentFieldValue = stringValue === '0' ? '' : stringValue
     } else {
-      const stringValue = fieldValues.length.toString()
+      const stringValue = fieldValues.height.toString()
       currentFieldValue = stringValue === '0' ? '' : stringValue
     }
     
@@ -123,20 +123,20 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
       <div className="ed-input__fields-container">
         <div className="ed-input__fields header">
           <p className="ed-input__fields__field srno">Sr. no.</p>
-          <p className="ed-input__fields__field srno">Height</p>
-          <p className="ed-input__fields__field srno">Width</p>
           <p className="ed-input__fields__field srno">Length</p>
+          <p className="ed-input__fields__field srno">Width</p>
+          <p className="ed-input__fields__field srno">Thickness</p>
         </div>
         <div className="ed-input__fields">
           <p className="ed-input__fields__field srno">{sr}</p>
           <input
             readOnly
             type="text"
-            placeholder="height"
-            ref={heightRef}
+            placeholder="length"
+            ref={lengthRef}
             className="ed-input__fields__field focus"
-            value={parseInt(fieldValues.height) === 0 ? '' : fieldValues.height}
-            />
+            value={parseInt(fieldValues.length) === 0 ? '' : fieldValues.length}
+          />
           <input
             readOnly
             type="text"
@@ -148,10 +148,10 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
           <input
             readOnly
             type="text"
-            placeholder="length"
-            ref={lengthRef}
+            placeholder="thickness"
+            ref={heightRef}
             className="ed-input__fields__field"
-            value={parseInt(fieldValues.length) === 0 ? '' : fieldValues.length}
+            value={parseInt(fieldValues.height) === 0 ? '' : fieldValues.height}
           />
         </div>
       </div>

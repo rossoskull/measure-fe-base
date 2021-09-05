@@ -49,9 +49,16 @@
     padding: 10px 0px;
     color: $ocean;
 
-    span {
-      font-weight: bold;
-      margin-right: 10px;
+    p {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      span {
+        font-weight: bold;
+        margin-right: 10px;
+      }
     }
   }
 }

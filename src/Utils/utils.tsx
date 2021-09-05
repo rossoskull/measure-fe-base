@@ -20,6 +20,10 @@ export class DataEntry {
     return `${this.sr},${this.height},${this.width},${this.length}`
   }
 
+  getSaveCSV = () => {
+    return `${this.sr},${this.length},${this.width},${this.height}`
+  }
+
   setSr = (sr: number) => {
     this.sr = sr
     return this.sr
@@ -35,10 +39,10 @@ export const addListToLocalStorage = (list: Array<DataEntry>) => {
 
 /** Get string format data list */
 export const getStrDataList = (list: Array<DataEntry>, mode?: string) => {
-  let str = mode === 'csv' ? ', Height, Width, Length\n' : ''
+  let str = mode === 'csv' ? ', Length, Width, Thickness\n' : ''
 
   list.forEach((item, idx) => {
-    const csv = item.getCSV()
+    const csv = mode === 'csv' ? item.getSaveCSV() : item.getCSV()
     if (idx < list.length - 1) {
       str = `${str}${csv}${mode === 'csv' ? '\n' : '|'}`
     } else {
