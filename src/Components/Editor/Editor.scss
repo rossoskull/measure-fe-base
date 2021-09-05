@@ -42,4 +42,16 @@
       }
     }
   }
+
+  &__doc-details {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px;
+    color: $ocean;
+
+    span {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
 }

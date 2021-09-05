@@ -35,12 +35,24 @@
       .action-td {
         color: rgb(167, 17, 17);
         font-size: 1.8rem;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
       }
     }
 
     .table-data-row{
       animation: fade-in .8s ease-out 0s forwards;
       overflow: hidden;
+
+      &__clickable {
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
       
       &:nth-of-type(even) {
         background-color: $seafoam-opacity-50;

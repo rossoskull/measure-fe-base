@@ -188,6 +188,30 @@ const Editor = ({ isNew }: EditorProps) => {
     saveFile(listBlob, `${docDetails.invoice} - ${docDetails.customer}`)
   }
 
+  const handleDocDetailEdit = (detail: string) => {
+    type tstrMap = {
+      [key: string]: string
+    }
+    const strMap: tstrMap = {
+      'customer': 'Enter customer name',
+      'invoice': 'Enter invoice number',
+      'product': 'Enter product type'
+    }
+
+    const newValue = prompt(strMap[detail])
+
+    if (newValue && newValue.length > 0) {
+      const newDocDetails = {
+        ...docDetails,
+        [detail]: newValue
+      }
+
+      setDocDetails(newDocDetails)
+
+      setCustomerData(newDocDetails.customer, newDocDetails.invoice, newDocDetails.product)
+    }
+  }
+
   return (
     <div className="editor">
       <div className="editor__header">
@@ -209,6 +233,13 @@ const Editor = ({ isNew }: EditorProps) => {
           </p>
         </div>
       </div>
+      
+      <div className="editor__doc-details">
+        <p onClick={() => handleDocDetailEdit('customer')}><span>Customer:</span> {docDetails.customer}</p>
+        <p onClick={() => handleDocDetailEdit('invoice')}><span>Invoice No.:</span> {docDetails.invoice}</p>
+        <p onClick={() => handleDocDetailEdit('product')}><span>Product:</span> {docDetails.product}</p>
+      </div>
+
       <DisplayList
         list={dataList}
         removeFromList={removeFromList}

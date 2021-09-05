@@ -94,10 +94,10 @@ const DisplayList = ({ list, removeFromList, editValues, editIndex }: DisplayLis
           {list.map((l, lIdx) => {
             return (
               <tr className="table-data-row" key={lIdx}>
-                <td onClick={() => swapItem(lIdx)}>{l.sr}</td>
-                <td onClick={() => editHeight(lIdx, l.height)}>{l.height}</td>
-                <td onClick={() => editWidth(lIdx, l.width)}>{l.width}</td>
-                <td onClick={() => editLength(lIdx, l.length)}>{l.length}</td>
+                <td className="table-data-row__clickable" onClick={() => swapItem(lIdx)}>{l.sr}</td>
+                <td className="table-data-row__clickable" onClick={() => editHeight(lIdx, l.height)}>{l.height}</td>
+                <td className="table-data-row__clickable" onClick={() => editWidth(lIdx, l.width)}>{l.width}</td>
+                <td className="table-data-row__clickable" onClick={() => editLength(lIdx, l.length)}>{l.length}</td>
                 <td>{l.getVolume()}</td>
                 <td className="action-td">
                   <FontAwesomeIcon onClick={() => removeFromList(lIdx)} icon={faTrash} />
