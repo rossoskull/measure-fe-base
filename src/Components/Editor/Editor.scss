@@ -35,6 +35,10 @@
         text-decoration: none;
         color: $ocean;
         font-size: 1.6rem;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

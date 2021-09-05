@@ -8,6 +8,10 @@
   align-items: center;
   gap: 2rem;
 
+  &__file-input {
+    display: none;
+  }
+
   .icon-link {
     text-decoration: none;
   }

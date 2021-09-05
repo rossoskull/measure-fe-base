@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react'
 
-import DisplayList from './DisplayList/DisplayList'
-import Input from './Input/Input'
-import { addListToLocalStorage, DataEntry, getListFromStorage, getSr, isListInStorage, setCustomerData, setNewSr, setNewSrWithValue } from '../../Utils/utils'
-
-import './Editor.scss'
 import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faPen, faPrint } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faPrint, faSave } from '@fortawesome/free-solid-svg-icons'
+
+import DisplayList from './DisplayList/DisplayList'
+import Input from './Input/Input'
+import {
+  addListToLocalStorage,
+  DataEntry,
+  getCustomerData,
+  getListFromStorage,
+  getSr,
+  getStrCustomerData,
+  getStrDataList,
+  isListInStorage,
+  setCustomerData,
+  setNewSr,
+  setNewSrWithValue
+} from '../../Utils/utils'
+import { saveFile } from '../../Utils/fileSaverUtils'
+
+import './Editor.scss'
 
 interface EditorProps {
   isNew?: Boolean
@@ -23,6 +37,11 @@ const Editor = ({ isNew }: EditorProps) => {
     width: ''
   })
   const [docSr, setDocSr] = useState('')
+  const [docDetails, setDocDetails] = useState({
+    product: '',
+    customer: '',
+    invoice: ''
+  })
 
   const resetCurrentInput = () => {
     setCurrentInput({
@@ -50,6 +69,29 @@ const Editor = ({ isNew }: EditorProps) => {
     } else {
       const newSr = setNewSr()
       setDocSr(newSr)
+    }
+
+    // Get customer details
+    if (isNew) {
+      const customerName = prompt('Enter customer name') || ''
+      const invoiceNum = prompt('Enter invoice number') || ''
+      const productName = prompt('Enter product name') || ''
+
+      setCustomerData(customerName, invoiceNum, productName)
+
+      setDocDetails({
+        customer: customerName,
+        invoice: invoiceNum,
+        product: productName
+      })
+    } else {
+      const customerData = getCustomerData()
+
+      setDocDetails({
+        customer: customerData.customer,
+        invoice: customerData.invoice,
+        product: customerData.product
+      })
     }
   }, [isNew])
 
@@ -100,6 +142,7 @@ const Editor = ({ isNew }: EditorProps) => {
     setNewSrWithValue(docSr)
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const updateDocSr = () => {
     const newSr = prompt('Enter new sr. no.') || ''
     const intSr = parseInt(newSr)
@@ -111,15 +154,7 @@ const Editor = ({ isNew }: EditorProps) => {
   }
 
   const handlePrint = (e: React.MouseEvent<HTMLParagraphElement>) => {
-    const customerName = prompt('Enter customer name')
-    const invoiceNum = prompt('Enter invoice number')
-    const productName = prompt('Enter product name')
-
-    if (customerName && invoiceNum && productName) {
-      setCustomerData(customerName, invoiceNum, productName)
-
       history.push('/print')
-    }
   }
 
   /** Edit values of list items */
@@ -146,13 +181,20 @@ const Editor = ({ isNew }: EditorProps) => {
     }
   }
 
+  const handleSave = () => {
+    const customerList = getStrCustomerData(docDetails.customer, docDetails.invoice, docDetails.product)
+    const list = getStrDataList(dataList, 'csv')
+    const listBlob = new Blob([customerList, list], {type: 'text/csv'})
+    saveFile(listBlob, `${docDetails.invoice} - ${docDetails.customer}`)
+  }
+
   return (
     <div className="editor">
       <div className="editor__header">
         <p className="editor__header__title">Measure</p>
-        <p className="editor__header__doc-sr" onClick={updateDocSr}>
+        {/* <p className="editor__header__doc-sr" onClick={updateDocSr}>
           Doc. sr. {docSr} <FontAwesomeIcon icon={faPen} />
-        </p>
+        </p> */}
         <div className="editor__header__links">
           <Link to="/dashboard" className="editor__header__links__link">
             <FontAwesomeIcon icon={faArrowLeft} /> Back
@@ -160,6 +202,10 @@ const Editor = ({ isNew }: EditorProps) => {
 
           <p className="editor__header__links__link" onClick={handlePrint}>
             <FontAwesomeIcon icon={faPrint} /> Print
+          </p>
+
+          <p className="editor__header__links__link" onClick={handleSave}>
+            <FontAwesomeIcon icon={faSave} /> Save
           </p>
         </div>
       </div>

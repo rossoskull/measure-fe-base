@@ -28,18 +28,31 @@ export class DataEntry {
 
 /** Add data to localStorage */
 export const addListToLocalStorage = (list: Array<DataEntry>) => {
-  let str = ''
+  const str = getStrDataList(list)
+
+  localStorage.setItem('previousData', str)
+}
+
+/** Get string format data list */
+export const getStrDataList = (list: Array<DataEntry>, mode?: string) => {
+  let str = mode === 'csv' ? ', Height, Width, Length\n' : ''
 
   list.forEach((item, idx) => {
     const csv = item.getCSV()
     if (idx < list.length - 1) {
-      str = `${str}${csv}|`
+      str = `${str}${csv}${mode === 'csv' ? '\n' : '|'}`
     } else {
       str = `${str}${csv}`
     }
   })
 
-  localStorage.setItem('previousData', str)
+  return str
+}
+
+/** Get customer data in CSV format */
+export const getStrCustomerData = (customer: string, invoice: string, product: string) => {
+  const str = `,Invoice Number, Customer, Product\n,${invoice},${customer},${product}\n,,,\n`
+  return str
 }
 
 /** Check if list exists in storage */
