@@ -25,6 +25,7 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
 
   /** State */
   const [currentField, setCurrentField] = useState(0)
+  const [resetCurrentField, setResetCurrentField] = useState(true)
 
   /** Access fields */
   const refArray = [lengthRef, widthRef, heightRef]
@@ -66,6 +67,8 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
     if (prevNode) {
       prevNode['classList']['remove']('focus')
     }
+
+    setResetCurrentField(true)
   }
 
   const previousField = () => {
@@ -87,21 +90,26 @@ const Input = ({sr, addNewEntry, fieldValues, updateCurrentInput, resetInputs} :
       if (prevNode) {
         prevNode['classList']['remove']('focus')
       }
+      setResetCurrentField(true)
     }
   }
 
   const handleInputClick = (value: string) => {
     let currentFieldValue = ''
-    if (currentField === 0) {
-      const stringValue = fieldValues.length.toString()
-      currentFieldValue = stringValue === '0' ? '' : stringValue
-    } else if (currentField === 1) {
-      const stringValue = fieldValues.width.toString()
-      currentFieldValue = stringValue === '0' ? '' : stringValue
-    } else {
-      const stringValue = fieldValues.height.toString()
-      currentFieldValue = stringValue === '0' ? '' : stringValue
+    if (!resetCurrentField) {
+      if (currentField === 0) {
+        const stringValue = fieldValues.length.toString()
+        currentFieldValue = stringValue === '0' ? '' : stringValue
+      } else if (currentField === 1) {
+        const stringValue = fieldValues.width.toString()
+        currentFieldValue = stringValue === '0' ? '' : stringValue
+      } else {
+        const stringValue = fieldValues.height.toString()
+        currentFieldValue = stringValue === '0' ? '' : stringValue
+      }
     }
+
+    setResetCurrentField(false)
     
     if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'].includes(value)) {
       if (value === '.' && currentFieldValue.includes('.')) return
